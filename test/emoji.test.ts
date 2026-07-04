@@ -30,7 +30,7 @@ test("every emoji-test.txt sequence has width 2", () => {
       .join("");
 
     const w = strWidth(emoji);
-    const wCjk = strWidth(emoji, { cjk: true });
+    const wCjk = strWidth(emoji, true);
     if (w !== 2 || wCjk !== 2) {
       assert.fail(`emoji ${JSON.stringify(emoji)} [${cps.trim()}]: got ${w}/${wCjk}, want 2/2`);
     }

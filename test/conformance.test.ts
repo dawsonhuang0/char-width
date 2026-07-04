@@ -23,7 +23,7 @@ test("charWidth matches Rust for all 1,114,112 code points (non-CJK and CJK)", (
 
     const s = String.fromCodePoint(cp);
     const got = charWidth(s);
-    const gotCjk = charWidth(s, { cjk: true });
+    const gotCjk = charWidth(s, true);
 
     const want = expected === 255 ? undefined : expected;
     const wantCjk = truth[cp * 2 + 1] === 255 ? undefined : truth[cp * 2 + 1];
@@ -51,7 +51,7 @@ test("strWidth matches Rust for the sequence corpus", () => {
     const [want, wantCjk] = widths[i].split(" ").map(Number);
 
     const got = strWidth(s);
-    const gotCjk = strWidth(s, { cjk: true });
+    const gotCjk = strWidth(s, true);
     if (got !== want || gotCjk !== wantCjk) {
       assert.fail(
         `sequence ${i} [${sequences[i]}]: got ${got}/${gotCjk}, want ${want}/${wantCjk}`

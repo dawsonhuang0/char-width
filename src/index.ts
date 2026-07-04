@@ -4,14 +4,6 @@ import { UNICODE_VERSION } from "./gen/tables";
 
 export { UNICODE_VERSION };
 
-export interface WidthOptions {
-  /**
-   * Treat East Asian Ambiguous characters as wide (2 columns), per the
-   * UAX #11 recommendation for CJK contexts. Defaults to false (narrow).
-   */
-  cjk?: boolean;
-}
-
 /**
  * Display width of a single Unicode code point.
  *
@@ -23,10 +15,11 @@ export interface WidthOptions {
  *   package is derived from; the rule is specific to this package.
  *
  * @param char String whose first code point is measured.
- * @param options Set `cjk: true` for East Asian (ambiguous-wide) context.
+ * @param cjk Treat East Asian Ambiguous characters as wide (2 columns), per
+ *   the UAX #11 recommendation for CJK contexts. Defaults to false (narrow).
  * @returns 0, 1, 2, or 3 columns, or `undefined` if not printable.
  */
-export function charWidth(char: string, options?: WidthOptions): number | undefined {
+export function charWidth(char: string, cjk?: boolean): number | undefined {
   const cp = char.codePointAt(0);
   if (cp === undefined) return undefined;
 
@@ -40,7 +33,7 @@ export function charWidth(char: string, options?: WidthOptions): number | undefi
   // Lone surrogate: see doc comment.
   if (cp >= 0xd800 && cp <= 0xdfff) return 1;
 
-  return packedWidth(lookupWidth(cp, options?.cjk === true));
+  return packedWidth(lookupWidth(cp, cjk === true));
 }
 
 /**
@@ -52,12 +45,13 @@ export function charWidth(char: string, options?: WidthOptions): number | undefi
  * a negative value; control characters count as width 1.
  *
  * @param str Input string to measure.
- * @param options Set `cjk: true` for East Asian (ambiguous-wide) context.
+ * @param cjk Treat East Asian Ambiguous characters as wide (2 columns), per
+ *   the UAX #11 recommendation for CJK contexts. Defaults to false (narrow).
  * @returns Total display width in columns.
  */
-export function strWidth(str: string, options?: WidthOptions): number {
+export function strWidth(str: string, cjk?: boolean): number {
   if (!str) return 0;
-  return strWidthImpl(str, options?.cjk === true);
+  return strWidthImpl(str, cjk === true);
 }
 
 export default charWidth;

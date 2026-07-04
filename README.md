@@ -34,26 +34,26 @@ strWidth('👩‍👩‍👧‍👦');    // 2 (ZWJ sequence)
 strWidth('🇨🇦');     // 2 (flag)
 ```
 
-### `charWidth(char, options?)`
+### `charWidth(char, cjk?)`
 
 Display width of the **first code point** of `char`:
 `0`, `1`, `2`, or `3` columns, or `undefined` if it is a control character
 (C0, DEL, C1) or the string is empty.
 
-### `strWidth(str, options?)`
+### `strWidth(str, cjk?)`
 
 Display width of a string in terminal columns. Never negative; control
 characters count as width 1 and `"\r\n"` counts as 1.
 
-### Options
+### CJK mode
 
-Both functions accept `{ cjk: true }` to treat East Asian Ambiguous
-characters as 2 columns wide, per the [UAX #11] recommendation for CJK
-contexts:
+Both functions accept an optional `cjk` boolean to treat East Asian
+Ambiguous characters as 2 columns wide, per the [UAX #11] recommendation
+for CJK contexts:
 
 ```ts
-charWidth('§');               // 1
-charWidth('§', { cjk: true }); // 2
+charWidth('§');       // 1
+charWidth('§', true); // 2
 ```
 
 [UAX #11]: https://www.unicode.org/reports/tr11/
