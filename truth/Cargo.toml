@@ -1,0 +1,12 @@
+[package]
+name = "truth"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+unicode-width = { path = "../unicode-width" }
+
+[[bin]]
+name = "truth"
+path = "src/main.rs"
