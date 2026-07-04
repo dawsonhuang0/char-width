@@ -1,0 +1,69 @@
+{
+  "name": "char-width",
+  "version": "1.0.0",
+  "description": "Rust's sequence-aware char width lookup for Node.js & TypeScript.",
+  "keywords": [
+    "unicode",
+    "unicode-width",
+    "width",
+    "char-width",
+    "character-width",
+    "string-width",
+    "display-width",
+    "column-width",
+    "east-asian",
+    "east-asian-width",
+    "cjk",
+    "fullwidth",
+    "halfwidth",
+    "ambiguous",
+    "emoji",
+    "zwj",
+    "variation-selector",
+    "grapheme",
+    "combining",
+    "terminal",
+    "tty",
+    "cli",
+    "console",
+    "monospace",
+    "codepoint",
+    "text-alignment",
+    "text-measure",
+    "string-utils",
+    "typescript",
+    "javascript",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/dawsonhuang0/char-width#readme",
+  "bugs": {
+    "url": "https://github.com/dawsonhuang0/char-width/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dawsonhuang0/char-width.git"
+  },
+  "license": "MIT",
+  "author": "Dawson Huang",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "THIRD-PARTY-NOTICES.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "tsx --test test/*.test.ts",
+    "gen": "node scripts/convert.mjs",
+    "gen:truth": "node scripts/gen-sequences.mjs && cargo run --release --manifest-path truth/Cargo.toml && node scripts/pack-truth.mjs",
+    "gen:plain": "node scripts/convert.mjs --plain"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

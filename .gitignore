@@ -1,0 +1,12 @@
+# folders
+node_modules/
+dist/
+unicode-width/
+truth/target/
+
+# generated ground-truth intermediates
+truth/char_widths.bin
+truth/seq_widths.txt
+
+# files
+.DS_Store
