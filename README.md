@@ -101,6 +101,7 @@ See [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) for more.
 Distributed under the MIT License.
 See [`LICENSE`](LICENSE) for more information.
 
+---
 
 ### Looking for a POSIX-compliant port?
 
